@@ -1,0 +1,36 @@
+# SXYQ27 private VPN device subscription. Do not share this file.
+mixed-port: 7897
+allow-lan: false
+mode: rule
+log-level: warning
+ipv6: false
+unified-delay: true
+tcp-concurrent: true
+
+proxies:
+  - name: "日本 Hysteria2 · 乐"
+    type: hysteria2
+    server: vpn.sxyq27.online
+    port: 8443
+    password: "d-6046dcf28bb3a727:u9e8wj-bLpWDWwpW63zLqyTyQTZiSFZL"
+    obfs: salamander
+    obfs-password: "owPSkqtyREaDimT4kyz69YfIGSwvTyQBnP7FeOeQ"
+    sni: vpn.sxyq27.online
+    skip-cert-verify: false
+    udp: true
+
+proxy-groups:
+  - name: "🚀 节点选择"
+    type: select
+    proxies:
+      - "日本 Hysteria2 · 乐"
+      - DIRECT
+
+rules:
+  - IP-CIDR,10.77.0.0/24,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,169.254.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - GEOIP,CN,DIRECT
+  - MATCH,🚀 节点选择
